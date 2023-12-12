@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Sentiment Analysis</title>
+    <!-- Bootstrap CSS -->
+    <link
+      rel="stylesheet"
+      href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"
+    />
+    <style>
+      /* Add spacing and center components */
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+      }
+
+      .form-container {
+        padding: 20px;
+        text-align: center;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="form-container">
+      <h1>Sentiment Analysis</h1>
+      <form action="/predict" method="POST">
+        <label for="sentence">Enter a sentence:</label>
+        <input
+          type="text"
+          id="sentence"
+          name="sentence"
+          placeholder="Write a sentence..."
+          class="form-control"
+        />
+        <br />
+        <button type="submit" class="btn btn-primary">Analyze</button>
+      </form>
+
+      <br />
+      <h4 class="text-center">{{prediction_text}}</h4>
+    </div>
+
+    <!-- Bootstrap JS -->
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
