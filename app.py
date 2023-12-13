@@ -14,11 +14,9 @@ app = Flask(__name__)
 model = pickle.load(open('./model/lstm_model.pkl', 'rb'))
 tokenizer = BertTokenizer.from_pretrained('bert-base-uncased')
 
-
 @app.route('/')
 def home():
     return render_template('index.html')
-
 
 slang_dict = {
     'btw': 'by the way',
@@ -60,16 +58,12 @@ slang_dict = {
     'asap': 'as soon as possible'
 }
 
-# Function to extract and process hashtags
-
-
+# Extract and process hashtags
 def process_hashtags(text):
     hashtags = re.findall(r'#\w+', text)
     return ' '.join(hashtags)
 
 # Function to preprocess the input text
-
-
 def preprocess_text(text):
     # Convert emojis to text and process hashtags
     text = demojize(text) + ' ' + process_hashtags(text)
@@ -115,7 +109,6 @@ def predict_sentiment(text):
     bert_features = np.expand_dims(bert_features, axis=1)
 
     # Make the prediction using the trained LSTM model
-    # Fix: Add the missing model prediction code here
     sentiment_probabilities = model(bert_features)
     predicted_sentiment = np.argmax(sentiment_probabilities, axis=1)
     encoded_labels = {0: 'Negative', 1: 'Neutral', 2: 'Positive'}
