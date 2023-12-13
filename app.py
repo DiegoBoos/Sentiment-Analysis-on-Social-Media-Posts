@@ -63,7 +63,7 @@ def process_hashtags(text):
     hashtags = re.findall(r'#\w+', text)
     return ' '.join(hashtags)
 
-# Function to preprocess the input text
+# Preprocess the input text
 def preprocess_text(text):
     # Convert emojis to text and process hashtags
     text = demojize(text) + ' ' + process_hashtags(text)
@@ -85,7 +85,7 @@ def preprocess_text(text):
 
     return ' '.join(tokens)
 
-# Function to predict the sentiment of the input text
+# Predict the sentiment of the input text
 def predict_sentiment(text):
     # Preprocess the input text
     preprocessed_text = preprocess_text(text)
@@ -108,7 +108,7 @@ def predict_sentiment(text):
     bert_features = bert_encode(preprocessed_text)
     bert_features = np.expand_dims(bert_features, axis=1)
 
-    # Make the prediction using the trained LSTM model
+    # Make the prediction using the model
     sentiment_probabilities = model(bert_features)
     predicted_sentiment = np.argmax(sentiment_probabilities, axis=1)
     encoded_labels = {0: 'Negative', 1: 'Neutral', 2: 'Positive'}
